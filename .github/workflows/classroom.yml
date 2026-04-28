@@ -32,7 +32,7 @@ jobs:
       with:
         test-name: "Basic sorting functionality with multiple assignments"
         command: |
-          printf '%b' '200\n180\n160\n140\n120\n85\nMath Homework\n92\nScience Quiz\n78\nHistory Essay\n-1\n' | ./main 2>/dev/null | grep -Fqf /tmp/expected_basicsortingfunctionalitywithmultipleassignments.txt
+          printf '%b' '200\n180\n160\n140\n120\n85\nMath Homework\n92\nScience Quiz\n78\nHistory Essay\n-1\n' | ./main 2>/dev/null | node -e 'const fs=require("fs"),r=s=>s.replace(/[\s\r\n]+$/,"");const a=r(fs.readFileSync(0,"utf8")),e=r(process.argv[1]?fs.readFileSync(process.argv[1],"utf8"):process.argv[2]||"");process.exit(a.includes(e)?0:1);' /tmp/expected_basicsortingfunctionalitywithmultipleassignments.txt
         timeout: 10
         max-score: 33
 
@@ -42,7 +42,7 @@ jobs:
       with:
         test-name: "Parallel vectors store assignment names correctly"
         command: |
-          printf '%b' '100\n90\n80\n70\n60\n95\nFinal Project\n88\nMidterm Exam\n-1\n' | ./main 2>/dev/null | grep -Fqf /tmp/expected_parallelvectorsstoreassignmentnamescorrectly.txt
+          printf '%b' '100\n90\n80\n70\n60\n95\nFinal Project\n88\nMidterm Exam\n-1\n' | ./main 2>/dev/null | node -e 'const fs=require("fs"),r=s=>s.replace(/[\s\r\n]+$/,"");const a=r(fs.readFileSync(0,"utf8")),e=r(process.argv[1]?fs.readFileSync(process.argv[1],"utf8"):process.argv[2]||"");process.exit(a.includes(e)?0:1);' /tmp/expected_parallelvectorsstoreassignmentnamescorrectly.txt
         timeout: 10
         max-score: 28
 
@@ -52,7 +52,7 @@ jobs:
       with:
         test-name: "Single assignment handling"
         command: |
-          printf '%b' '100\n90\n80\n70\n60\n75\nOnly Assignment\n-1\n' | ./main 2>/dev/null | grep -Fqf /tmp/expected_singleassignmenthandling.txt
+          printf '%b' '100\n90\n80\n70\n60\n75\nOnly Assignment\n-1\n' | ./main 2>/dev/null | node -e 'const fs=require("fs"),r=s=>s.replace(/[\s\r\n]+$/,"");const a=r(fs.readFileSync(0,"utf8")),e=r(process.argv[1]?fs.readFileSync(process.argv[1],"utf8"):process.argv[2]||"");process.exit(a.includes(e)?0:1);' /tmp/expected_singleassignmenthandling.txt
         timeout: 10
         max-score: 17
 
@@ -62,7 +62,7 @@ jobs:
       with:
         test-name: "Sorting with identical scores"
         command: |
-          printf '%b' '150\n135\n120\n105\n90\n100\nAssignment A\n100\nAssignment B\n100\nAssignment C\n-1\n' | ./main 2>/dev/null | grep -Fqf /tmp/expected_sortingwithidenticalscores.txt
+          printf '%b' '150\n135\n120\n105\n90\n100\nAssignment A\n100\nAssignment B\n100\nAssignment C\n-1\n' | ./main 2>/dev/null | node -e 'const fs=require("fs"),r=s=>s.replace(/[\s\r\n]+$/,"");const a=r(fs.readFileSync(0,"utf8")),e=r(process.argv[1]?fs.readFileSync(process.argv[1],"utf8"):process.argv[2]||"");process.exit(a.includes(e)?0:1);' /tmp/expected_sortingwithidenticalscores.txt
         timeout: 10
         max-score: 22
     - name: Autograding Reporter
