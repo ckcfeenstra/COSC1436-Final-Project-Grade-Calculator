@@ -15,7 +15,7 @@ Starting from a basic grade calculator that computes cumulative scores, students
 
 1. Add necessary `#include` statements for vector operations, string handling, and sorting algorithms
 2. Declare two parallel vectors: one `std::vector<std::string>` for assignment names and one `std::vector<float>` for assignment scores
-3. Modify the assignment input loop to collect both assignment names (using `getline()`) and scores, storing them in the parallel vectors
+3. Modify the assignment input loop to collect both assignment scores and names (using `getline()` for names), storing them in the parallel vectors
 4. Implement sorting functionality to arrange both vectors from highest to lowest score while keeping names and scores paired correctly
 5. Add output section to display the sorted assignment list with names and scores
 6. Maintain all existing functionality (grading scheme setup, final grade calculation, percentage calculation)
@@ -50,38 +50,39 @@ std::vector<std::string> assignment_names;
 std::vector<float> assignment_scores;
 ```
 
-### Modify Assignment Input Loop to Collect Names and Scores
+### Modify Assignment Input Loop to Collect Scores and Names
 
 Replace the existing do-while loop that only collects scores. The new loop should:
-- Prompt for and collect the assignment name using `getline()`
-- Prompt for and collect the assignment score
+- Prompt for and collect the assignment score first
+- If the score is non-negative, prompt for and collect the assignment name using `getline()`
 - Store both in their respective parallel vectors
 - Continue until a negative score is entered
 
-```cpp
-std::cin.ignore(); // Clear the input buffer before using getline()
+**Important:** read the score first, then the name. Reading the score first lets the loop terminate cleanly when the user enters a negative sentinel value, before any name prompt is shown. After reading the score with `cin >>`, call `cin.ignore()` to clear the trailing newline from the input buffer so that `getline()` reads the actual name on the next line instead of an empty string.
 
+```cpp
 do {
-    std::string assignment_name;
-    std::cout << "Please input the name for Assignment " << assignment << ": ";
-    std::getline(std::cin, assignment_name);
-    
     std::cout << "Please input the points earned for Assignment " << assignment << ": ";
     std::cin >> assignment_score;
-    
+
     if (assignment_score >= 0) {
+        // Clear input buffer before using getline()
+        std::cin.ignore();
+        std::string assignment_name;
+        std::cout << "Please input the name for Assignment " << assignment << ": ";
+        std::getline(std::cin, assignment_name);
+
         assignment_names.push_back(assignment_name);
         assignment_scores.push_back(assignment_score);
         total_points_earned += assignment_score;
         assignment++;
-        std::cin.ignore(); // Clear buffer after numeric input
     } else {
         score_input = false;
     }
 } while (score_input);
 ```
 
-The `std::cin.ignore()` calls are crucial for proper string input handling when mixing `getline()` with `>>` operators.
+The `std::cin.ignore()` call between `cin >>` and `getline()` is crucial for proper string input handling when mixing the two operators.
 
 ### Implement Parallel Vector Sorting
 
@@ -152,10 +153,10 @@ int main() {
     float B_points = 0.00;
     float C_points = 0.00;
     float D_points = 0.00;
-    
+
     float total_points_earned = 0.00;
     float total_percentage_earned = 0.00;
-    
+
     float assignment_score = 0.00;
     char earned_grade;
     bool score_input = true;
@@ -208,22 +209,21 @@ int main() {
     std::cout << "You will be prompted to input scores for all assignments.\n";
     std::cout << "(Input a negative number to cease input and calculate letter grade.)\n\n";
 
-    std::cin.ignore(); // Clear the input buffer before using getline()
-
     do {
-        std::string assignment_name;
-        std::cout << "Please input the name for Assignment " << assignment << ": ";
-        std::getline(std::cin, assignment_name);
-        
         std::cout << "Please input the points earned for Assignment " << assignment << ": ";
         std::cin >> assignment_score;
-        
+
         if (assignment_score >= 0) {
+            // Clear input buffer before using getline()
+            std::cin.ignore();
+            std::string assignment_name;
+            std::cout << "Please input the name for Assignment " << assignment << ": ";
+            std::getline(std::cin, assignment_name);
+
             assignment_names.push_back(assignment_name);
             assignment_scores.push_back(assignment_score);
             total_points_earned += assignment_score;
             assignment++;
-            std::cin.ignore(); // Clear buffer after numeric input
         } else {
             score_input = false;
         }
@@ -310,18 +310,18 @@ To test your implementation:
 
 | Test Name | Points | Description |
 |-----------|---------|-------------|
-| `test_parallel_vectors_declaration` | 10 | Correctly declares parallel vectors for names and scores |
-| `test_getline_usage` | 15 | Uses `getline()` to properly collect assignment names |
-| `test_vector_population` | 20 | Correctly stores names and scores in parallel vectors |
-| `test_sorting_functionality` | 25 | Implements sorting from highest to lowest score |
-| `test_parallel_integrity` | 20 | Maintains correct pairing between names and scores after sorting |
-| `test_sorted_output_display` | 10 | Displays sorted assignments with proper formatting |
+| `Basic sorting functionality with multiple assignments` | 33 | Multiple assignments are sorted highest-to-lowest with names paired correctly |
+| `Parallel vectors store assignment names correctly` | 28 | Two-element case verifies the parallel vector relationship is maintained after sorting |
+| `Single assignment handling` | 17 | A single-assignment input is displayed correctly without breaking the sort |
+| `Sorting with identical scores` | 22 | Identical scores are handled — all entries appear in the output |
 
 **Total: 100 points**
 
 ## Tips and Hints
 
-- **Buffer Management**: Always use `std::cin.ignore()` after numeric input when you plan to use `getline()` next. This prevents leftover newline characters from interfering with string input.
+- **Input Order Matters**: Read the assignment **score first** with `cin >>`, then the **name** with `getline()`. This lets the negative-score sentinel terminate the loop before a name prompt is wasted, and matches what the autograder pipes to your program.
+
+- **Buffer Management**: Always call `std::cin.ignore()` between `cin >>` (numeric input) and `getline()` (string input). The `>>` operator leaves a trailing newline in the input buffer; without `ignore()`, `getline()` reads that empty line instead of the actual name.
 
 - **Parallel Vector Sorting**: The key challenge is sorting two vectors together. The index-based approach shown creates a vector of indices, sorts those indices based on the scores, then uses the sorted indices to rebuild both vectors in the correct order.
 
@@ -331,4 +331,4 @@ To test your implementation:
 
 - **Include Dependencies**: Remember to add `#include <vector>`, `#include <string>`, and `#include <algorithm>` at the top of your file for the new functionality.
 
-- **Maintaining Existing Functionality**: The total points calculation should remain unchanged - you're still adding all scores to `total_points_earned` for the final grade calculation, just now also storing them individually for sorting and display.
+- **Maintaining Existing Functionality**: The total points calculation should remain unchanged — you're still adding all scores to `total_points_earned` for the final grade calculation, just now also storing them individually for sorting and display.
