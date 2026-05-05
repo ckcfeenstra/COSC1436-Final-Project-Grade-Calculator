@@ -7,7 +7,7 @@ from a user-defined grading scheme and a set of assignment scores.
 Clark Feenstra - COSC 1436, Spring 2026
 
 ## Description
-[2-3 sentences describing what the program does and who it's for.]
+This program is a grade calculator for students who want to see their course work and final results laid out. The program takes the grading scheme, the scores and names of assignments, and produces the earned points out of the possible points, the percentage score, and the letter grade.
 
 ## Features
 - Time-of-day greeting
