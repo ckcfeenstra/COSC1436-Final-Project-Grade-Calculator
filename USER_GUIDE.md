@@ -1,3 +1,12 @@
+# Heading 1
+## Heading 2
+`Reference or line code`
+```
+  Full Program
+  Goes in
+  This area
+```
+[Name of Website]URL
 1. Introduction — what the program does, in plain English.
 2. Getting Started — how to launch the program (one or two sentences referencing the README's build instructions).
 3. Step-by-Step Walkthrough — number every prompt the user will see, in order, with: what the prompt is asking for, the data type / format expected (e.g., "a whole number", "a decimal number such as 87.5"), and acceptable input ranges or constraints (e.g., "Total Points Possible must be a positive integer").
