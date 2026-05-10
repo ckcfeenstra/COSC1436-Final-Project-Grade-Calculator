@@ -4,7 +4,7 @@
    This program receives a student's grading scheme, takes the score and the name of assignments, and performs calculations to show the student's final results.
    
 ## Getting Started
-   In order to launch this program, the user must navigate to and click the [Code](https://studious-goldfish-7vq7p6wj9ggw3q57.github.dev/) button within the home page of the repository. This will redirect the user to codespace. Next, the user should click on the "Run and Debug" button located on the lefthand side menu. If the user has not done so already, he will be prompted to install the C/C++ Extension:
+   In order to launch this program, the user must navigate to and click the [Code](https://studious-goldfish-7vq7p6wj9ggw3q57.github.dev/) button within the home page of the Github repository. This will redirect the user to codespace. Next, the user should click on the "Run and Debug" button located on the lefthand side menu. If the user has not done so already, he will be prompted to install the C/C++ Extension:
 
    ![C/C++ Extension image](/assets/packet.png "C/C++ Extension")
    
