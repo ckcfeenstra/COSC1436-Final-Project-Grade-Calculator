@@ -1,10 +1,10 @@
 # Grade Calculator
 
 ## Introduction
-   This program receives a student's grading scheme, takes the score and the name of assignments, and performs calculations to show the student's final results.
+   This program receives a student's grading scheme, takes the scores and the names of assignments, and performs calculations to show the student's final results.
    
 ## Getting Started
-   In order to launch this program, the user must navigate to and click the [Code](https://studious-goldfish-7vq7p6wj9ggw3q57.github.dev/) button within the home page of the Github repository. This will redirect the user to codespace. Next, the user should click on the "Run and Debug" button located on the lefthand side menu. If the user has not done so already, he will be prompted to install the C/C++ Extension:
+   In order to launch this program, the user must navigate to and click the [Code](https://studious-goldfish-7vq7p6wj9ggw3q57.github.dev/) button within the home page of the Github repository. This will redirect the user to Codespaces. Next, the user should click on the "Run and Debug" button located on the lefthand side menu. If the user has not done so already, he will be prompted to install the C/C++ Extension:
 
    ![C/C++ Extension image](/assets/packet.png "C/C++ Extension")
    
@@ -14,12 +14,12 @@ The necessary requirements to launch the program can be reviewed in the README.m
 ## Step-by-Step Walkthrough
 
    1. Once the program is running, the user will be prompted to enter a positive whole number for the total points possible in the course.
-
-   2. The user will then be asked to input a positive decimal number such as 89.5 for the minimum number of points for each letter grade A-D.
    
-   3. The grading scheme the user input will then be displayed. The program will then prompt the user to input the grade as a positive decimal number and the name for each       assignment. This process will repeat until the user inputs a negative number in the prompt for the points earned for the assignment in order to terminate the               repitition.
+   2. The user will then be asked to input a positive decimal number such as 89.5 for the minimum number of points for each letter grade A-D. The grading scheme the user inputs will then be displayed.
    
-   4. Once the prompts for assignments is terminated by a negative number input, the final results will be displayed for the user.
+   3. The program will then prompt the user to input the grade as a positive decimal number and then a new prompt will ask for the corresponding name of the assignment. This process will repeat until the user inputs a negative number in the prompt for the points earned for the assignment in order to terminate the repitition. The negative number is not included in the total sum.
+   
+   4. Once the prompts for assignments are terminated by a negative number input, the final results will be displayed for the user.
 
 
 ## Sample Session
